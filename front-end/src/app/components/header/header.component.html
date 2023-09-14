@@ -1,0 +1,33 @@
+<header>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light w-100">
+
+        <div class="collapse navbar-collapse position-relative d-inline-block w-75 px-5" id="navbarSupportedContent">
+            <h1>fitness-journey</h1>
+            <ul class="navbar-nav mx-5 ">
+                <li class="nav-item active">
+                    <a class="nav-link" routerLink="/">Muscles</a>
+                </li>
+                <li *ngIf="isLoggedIn" class="nav-item ">
+                    <a class="nav-link" routerLink="/journal">MyJournal</a>
+                </li>
+            </ul>
+            <div class=" position-absolute end-0 mx-5 d-inline-block">
+                <ul class="navbar-nav mx-5">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+                    <li *ngIf="!isLoggedIn" class="nav-item">
+                        <a class="nav-link " routerLink="/log-in">Login</a>
+
+                    </li>
+
+                    <li *ngIf="isLoggedIn" class="nav-item">
+                        <a class="nav-link" (click)="logout()">Log Out</a>
+
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>

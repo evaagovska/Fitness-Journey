@@ -1,0 +1,101 @@
+<section class=" bg-image background" >
+    <div class="mask d-flex align-items-center  gradient-custom-3">
+        <div class="container">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                    <div class="card" style="border-radius: 15px;">
+                        <div class="card-body p-5">
+                            <h2 class="text-uppercase text-center mb-5">Create an account</h2>
+
+                            <form #form="ngForm" (ngSubmit)="signup(form)">
+
+
+                                <div class="row form-outline  mb-2">
+                                    <div class="col">
+                                      <input type="text"required #name="ngModel" class="form-control"  [(ngModel)]="user.name" id="name" name="name" >
+                                      <label class="form-label" for="name">Your Name</label>
+                                      <br>
+                                      <span *ngIf="(name.invalid && name.touched)  || (form.submitted && name.invalid)" class="error text-danger">Name is required</span>
+                                      
+                                    </div>
+                                    <div class="col">
+                                      <input type="text"required #surname=ngModel class="form-control" id="surname" [(ngModel)]="user.surname" name="surname" >
+                                      <label class="form-label" for="surname">Your Surname</label>
+                                      <br>
+                                      <span *ngIf="(surname.invalid && surname.touched)  || (form.submitted && surname.invalid)" class="error text-danger">Surname is required</span>
+                                    </div>
+                                  </div>
+
+                                <div class="form-outline mb-2">
+                                    <input type="text" required #username="ngModel" id="username" name="username"  [(ngModel)]="user.username" class="form-control" />
+                                    <label class="form-label" for="username"> Username or Email</label>
+                                    <br>
+                                    <span *ngIf="(username.invalid && username.touched)  || (form.submitted && username.invalid)" class="error text-danger">    Username is required</span>
+                                </div>
+
+                                <div class="form-outline mb-2">
+                                    <input type="password"   #password="ngModel" minlength="8" required id="password" name="password"  [(ngModel)]="user.password" class="form-control form-control" />
+                                    <label class="form-label" for="password">Password</label>
+                                    <br>
+                                    <span *ngIf="(password.invalid && password.touched)  || (form.submitted && password.invalid)" class="error text-danger">    Password is required and should contains 8 characters at least</span>
+                                    
+                                </div>
+
+                                <div class="form-outline mb-2">
+                                    <input type="password" required id="password2" name="password2" [(ngModel)]="repeatedPassword" class="form-control form-control" />
+                                    <label class="form-label" for="password2">Repeat your password</label>
+
+                                </div>
+                                <div *ngIf="passwordNotMatched" class="error text-danger">
+                                    Passwords and repeated password did not match
+                                  </div>
+
+                                <div class="form-outline mb-2">
+
+                                    <div class="w-100 m-auto d-flex justify-content-center">
+                                        <div class="mx-2">
+                                            <input type="radio" class="form-check-input"  id="male"  [(ngModel)]="user.gender" name="gender" required value="MALE">
+                                            <label class="form-label mx-1 fs-5" for="male">Male</label>
+                                        </div>
+                                        <div class="mx-2 ">
+                                            <input type="radio" class="form-check-input" id="female"  [(ngModel)]="user.gender "name="gender" value="FEMALE">
+                                            <label class="form-label mx-1 fs-5" for="female">Female</label>
+                                        </div>
+                                    </div>
+                                    <p class="form-label ">Choose your gender</p>
+                                </div>
+
+                                <div class="form-outline mb-4">
+                                    <div class="w-100 m-auto d-flex justify-content-center">
+                                    <input type="date" name="date" [(ngModel)]="user.dateOfBirth" required id="date" /> <br> 
+                                    </div>
+                                    <label class="form-label" for="date">Your birthday</label>
+                                </div>
+
+
+
+                                <div class="form-check d-flex justify-content-center mb-5">
+                                        <input type="checkbox" name="myCheckbox" required [(ngModel)]="checked" id="check">
+                                    <label class="form-check-label" for="check">
+                                        I agree all statements in <a href="#!" class="text-body"><u>Terms of
+                                                service</u></a>
+                                    </label>
+                                    
+                                </div>
+
+                                <div class="d-flex justify-content-center">
+                                    <button type="submit"  [disabled]="form.invalid" class="btn btn-success  btn-lg ">Register</button>
+                                </div>
+
+                                <p class="text-center text-muted mt-5 mb-0">Have already an account? <a routerLink="log-in"
+                                        class="fw-bold text-body"><u>Login here</u></a></p>
+
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

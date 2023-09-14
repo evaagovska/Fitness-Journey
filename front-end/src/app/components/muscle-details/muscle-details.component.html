@@ -1,0 +1,35 @@
+
+<div class="container w-75">
+    <h1 class="m-5 custom-font text-outline p-2">{{ muscle?.name }}</h1>
+
+    <div *ngFor="let exercise of exercises" class="m-5 p-4 shadow-lg rounded row">
+        <h3 class="text-success">{{ exercise.name }}</h3>
+        <div class="col-5 p-2">
+            <div>
+                <h4 class="custom-font custom-color">Instructions:</h4>
+                <ul class="list-group list-group-flush">
+                    <li class="my-1 list-group-item" *ngFor="let step of exercise.steps">{{ step }}</li>
+                </ul>
+                <div class="m-1 p-1 border-succcess rounded "> 
+                <h6 custom-font custom-color>category: <span class="text-success fw-bold">{{ exercise.category }}</span></h6>
+                <h6 custom-font custom-color *ngIf="exercise.force">force: <span class=" fw-bold text-success">{{ exercise.force }}</span></h6>
+            </div>
+            </div>
+            </div>
+                <div class="col-7" *ngIf="exercise.videos && exercise.videos.length > 0">
+                    <h4 class="custom-color custom-font ">Video:</h4>
+                    <iframe width="100%" class="bg-light" height="315" [src]="exercise.videos[0] | safeUrl" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <div *ngIf="!exercise.videos || exercise.videos.length == 0">
+                    <h4>No video available</h4>
+                </div>
+            </div>
+        <hr>
+    </div>
+    <mat-paginator
+            [length]="totalItems"
+            [pageSize]="pageSize"
+            [pageIndex]="currentPage"
+            (page)="onPageChange($event)"
+    ></mat-paginator>
+

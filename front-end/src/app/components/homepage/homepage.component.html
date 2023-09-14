@@ -1,0 +1,12 @@
+<div class="container w-80 m-auto d-flex my-3 flex-wrap justify-content-center">
+  <div class="card w-25 d-inline-block mx-3 my-1 shadow hovered" *ngFor="let muscle of muscles; index as i">
+    <div class="card-body w-100 m-auto d-flex justify-content-center ">
+      <h1>
+        <a class="link-success text-decoration-none rounded mx-auto d-block d-flex justify-content-center my-2"
+          routerLink="/muscle/{{ muscle.id }}"> {{ muscle.name }}</a>
+        <a routerLink="/muscle/{{ muscle.id }}"> <img alt="muscle" class="img-fluid" [src]="images[i]" width="195px"
+            height="165px"></a>
+      </h1>
+    </div>
+  </div>
+</div>

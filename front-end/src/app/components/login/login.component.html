@@ -1,0 +1,52 @@
+<section class="vh-100 bg-image background">
+    <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+        <div class="container ">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                    <div class="card" style="border-radius: 15px;">
+                        <div class="card-body p-5">
+                            <h2 class="text-uppercase text-center mb-5">Log in</h2>
+
+                            <form #form="ngForm" (ngSubmit)="login(form)">
+
+                                <div class="form-outline mb-4">
+                                    <input type="text" id="username" required #username="ngModel" name="username"
+                                        [(ngModel)]="user.username" class="form-control form-control-lg" />
+                                    <label class="form-label" for="username">Username or Email</label>
+                                    <br>
+                                    <span
+                                        *ngIf="(username.invalid && username.touched)  || (form.submitted && username.invalid)"
+                                        class="error text-danger">Please enter your username</span>
+                                </div>
+
+                                <div class="form-outline mb-4">
+                                    <input type="password" #password="ngModel" required="password" name="password" id="password"
+                                        [(ngModel)]="user.password" class="form-control form-control-lg" />
+                                    <label class="form-label" for="password">Your Password</label>
+                                    <br>
+                                    <span
+                                        *ngIf="(password.invalid && password.touched)  || (form.submitted && password.invalid)"
+                                        class="error text-danger">Please enter your password</span>
+
+                                </div>
+
+
+                                <div class="d-flex justify-content-center">
+                                    <button type="submit" class="btn btn-success  btn-lg ">Login</button>
+                                </div>
+
+                                <p class="text-center text-muted mt-5 mb-0">Don't have an account? <a
+                                        routerLink="/sign-up" class="fw-bold text-body"><u>Register here</u></a></p>
+
+                            </form>
+                            <div class="alert alert-danger" *ngIf="loginError">
+                                <p>{{errorMessage}}</p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

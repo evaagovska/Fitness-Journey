@@ -1,0 +1,192 @@
+<div *ngIf="isLoggedIn" class="container">
+
+    <div class=" m-auto ">
+        <h1 class="mt-5 text-center text-outline">My Journal</h1>
+        <div class="row">
+            <div class="m-5 bg-custom  text-center p-5 col shadow-lg border border-success rounded ">
+
+                <h3 class="custom-color text-outline">HELLO <span class=" text-uppercase custom-font custom-color text-outline">{{user.name}}</span>!</h3>
+                <p>Please enter the missing attributes or the ones changed!</p>
+                <div id="form">
+                    <form #form="ngForm" (ngSubmit)="save(form)">
+
+                        <div class="row form-outline  mb-2">
+                            <div class="col">
+                                <label class="form-label h5" for="weight"> My WEIGHT<span class="h6"> (in
+                                        kg)</span></label>
+                                <input id="weight" name="weight" class="form-control" [(ngModel)]="journal.weight">
+                            </div>
+                            <div class="col">
+                                <label class="form-label  h5" for="height">My HEIGHT<span class="h6"> (in
+                                        cm)</span></label>
+                                <input type="text" id="height" name="height" [(ngModel)]="journal.height"
+                                    class="form-control" />
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-outline mb-2">
+
+
+                            <p class="form-label h5">My GOAL</p>
+                            <div class="w-100 m-auto d-flex justify-content-center">
+                                <div class="mx-2">
+                                    <input type="radio" name="goal" id="lose" class="form-check-input"
+                                        [(ngModel)]="journal.goal" required value="LOSE_WEIGHT">
+                                    <label class="form-label mx-1 fs-5" for="lose">LOSE WEIGHT</label>
+                                </div>
+                                <div class="mx-2 ">
+                                    <input type="radio" name="goal" id="gain" class="form-check-input"
+                                        [(ngModel)]="journal.goal" value="GAIN">
+                                    <label class="form-label mx-1 fs-5" for="gain">GAIN</label>
+                                </div>
+                                <div class="mx-2 ">
+                                    <input type="radio" name="goal" id="maintain" class="form-check-input"
+                                        [(ngModel)]="journal.goal" value="MAINTAIN">
+                                    <label class="form-label mx-1 fs-5" for="maintain">MAINTAIN</label>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+
+                        <div class="form-outline mb-2">
+                            <p class="form-label h5">My ACTIVITY</p>
+                            <div class="w-100 m-auto d-flex justify-content-center">
+                                <div class="mx-2">
+                                    <input type="radio" name="activity" id="noActivity" class="form-check-input"
+                                        [(ngModel)]="journal.activity" required value="NO_ACTIVITY">
+                                    <label class="form-label mx-1 fs-5" for="noActivity">NO ACTIVITY</label>
+                                </div>
+                                <div class="mx-2 ">
+                                    <input type="radio" name="activity" id="light" class="form-check-input"
+                                        [(ngModel)]="journal.activity" value="LIGHT">
+                                    <label class="form-label mx-1 fs-5" for="light">LIGHT<br>
+                                        <span class="h6">(1-2 times a week)</span></label>
+                                </div>
+                                <div class="mx-2 ">
+                                    <input type="radio" name="activity" id="moderate" class="form-check-input"
+                                        [(ngModel)]="journal.activity" value="MODERATE">
+                                    <label class="form-label mx-1 fs-5" for="moderate">MODERATE <br><span
+                                            class="h6">(4-5 times a week)</span></label>
+                                </div>
+                                <div class="mx-2 ">
+                                    <input type="radio" name="activity" id="active" class="form-check-input"
+                                        [(ngModel)]="journal.activity" value="ACTIVE">
+                                    <label class="form-label mx-1 fs-5" for="active">VERY ACTIVE <br><span
+                                            class="h6">(every day)</span> </label>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <button type="submit" [disabled]="form.invalid"
+                            class="btn btn-light  shadow-lg btn-lg ">Save</button>
+
+                    </form>
+                </div>
+
+
+            </div>
+
+
+
+
+
+            <div class="m-5 bg-custom  text-center p-5 col border border-success  shadow-lg rounded">
+
+                <div>
+
+                    <form (ngSubmit)="enterFood()">
+                        <h3 class="custom-font">What did you eat today?</h3>
+                        <br>
+                        <label class="form-label  h6 custom-font" for="searchFood"> Search food: </label>
+                        <input type="text" [(ngModel)]="searchFood" id="searchFood" name="searchFood"
+                            class="rounded bg-light m-2 " (keyup)="listFood()">
+
+                        <br>
+                        <select [(ngModel)]="enterFoodModel.selectedOption" name="selectedOption"
+                            class=" shadow-lg p-1  btn-light rounded m-1" style="width: 380px;">
+                            <option *ngFor="let option of options | slice:0:200" [value]="option.id">{{ option.name }}
+                            </option>
+                        </select>
+                        <br>
+
+                        <label class="form-label custom-font m-2 mt-4 h6" for="intakeSize">Portion size: </label>
+                        <input id="intakeSize" type="text" name="intakeSize" class="rounded bg-light w-3 k-2 "
+                            [(ngModel)]="enterFoodModel.intakeSize">g
+                        <br>
+                        <br>
+                        <button type="submit" class="btn btn-light  shadow-lg ">Enter food</button>
+                        <br>
+                    </form>
+                </div>
+
+                <hr>
+                <div>
+                    <h3 class="custom-font">Food Intake for the day day: </h3>
+                    <br>
+
+                    <div class="w-100 m-auto d-flex justify-content-center">
+                        <label class="form-label h4 m-3" for="date">Date </label>
+                        <input type="date" name="date" required id="date" [value]="selectedDate"
+                            [(ngModel)]="selectedDate" (change)="onDateChange()" /> <br>
+                    </div>
+
+                </div>
+                <br>
+
+                <div>
+
+                    <div class="m-3">
+                        <p class="h4">Total calories required:<span id="required_span" class="custom-color text-outline"> {{totalRequired |
+                                number:'1.1-1'}}</span></p>
+                        <p class="h4">Total calories intake:<span id="intake_span" class="text-outline"> {{totalCalories |
+                                number:'1.1-1'}}</span></p>
+                    </div>
+                </div>
+
+
+
+
+
+
+            </div>
+
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr class="table-success">
+                        <th>Food</th>
+                        <th>Calories</th>
+                        <th>Proteins</th>
+                        <th>Carbohydrates</th>
+                        <th>Fats</th>
+                        <th>Remove Food</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let food of dailyFoodArr">
+                        <td class="bg-success text-center text-white fw-bold align-middle">{{food.food.name}}
+                        </td>
+                        <td class="text-center align-middle">{{food.food.calories | number:'1.2-2'}}</td>
+                        <td class="text-center align-middle">{{food.food.proteins }}</td>
+                        <td class="text-center align-middle">{{food.food.carbohydrates}}</td>
+                        <td class="text-center align-middle">{{food.food.fats}}</td>
+                        <td class="text-center "><button type="button" class="btn btn-danger "
+                                (click)="deleteFood(food.id)">Delete</button></td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+        </div>
+
+
+    </div>
+</div>
+
+<div *ngIf="!isLoggedIn" class="container">
+
+    <div class=" w-75 m-auto p-5 text-center">
+        <h2>Please log in to see your journal! <a routerLink="/log-in" class="fw-bold  m-2 text-success">Login here</a>
+        </h2>
+    </div>
+</div>

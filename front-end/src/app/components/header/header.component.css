@@ -1,0 +1,15 @@
+
+
+  h1{
+    color: rgba(5, 122, 5, 0.856);font-size: 36px; 
+    margin: 0;
+    font-family: 'Schibsted Grotesk', sans-serif;
+  }
+  ul a{
+    font-size: 20px;
+    margin:5px;
+  }
+  ul a:hover{
+    color: rgba(5, 122, 5, 0.856);
+    font-weight: bold;
+  }
